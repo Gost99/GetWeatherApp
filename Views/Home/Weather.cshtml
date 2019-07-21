@@ -1,0 +1,36 @@
+﻿@model WeatherResponse
+    <form method="post">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="text" name="city" class="form-control" placeholder="Enter a city">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div> 
+        </div>
+    </form>
+@if (Model != null)
+{
+    <div class="jumbotron main-weather">
+        <div>
+            <h3>City: @Model.CurrentWeather.Name, @Model.CurrentWeather.Sys.Country</h3>
+            <h4>Weather: @Model.CurrentWeather.Weather.Main</h4>
+        </div>
+        <h5 class="temperature">@Model.CurrentWeather.Main.Temp_min - @Model.CurrentWeather.Main.Temp_max °C</h5>
+        </div>
+    <div class="container weather-container">
+        <div class="row">
+            @foreach (var item in Model.WeatherForecast)
+            {
+                <div class="col-md-4 weather-box">
+                    <h4>@item.Date.ToString("dddd, dd MMMM yyyy hh:mm tt")</h4> 
+                    <h4>Weather: @item.Weather[0].Main  |   @item.Main.Temp_min - @item.Main.Temp_max °C</h4>
+                </div>
+            }
+        </div>
+    </div>
+}
