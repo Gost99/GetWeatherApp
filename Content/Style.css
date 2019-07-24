@@ -40,8 +40,21 @@ textarea {
     margin-top: 50px;
 }
 
-.temperature{
+.temperature {
     float: right;
     font-size: 50pt;
     padding-left: 30px;
 }
+
+.date-group-title{
+    margin-top: 20px;
+    height: 30px;
+    width: 100%;
+    
+}
+
+.dropdown-toggle {
+    width: 300px !important;
+}
+
+

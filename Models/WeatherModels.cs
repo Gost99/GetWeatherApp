@@ -6,30 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-
-#region WeatherModels.InfoModels
-public class CountryInfo
-{
-    public string Country { get; set; }
-
-}
-
-public class WeatherInfo
-{
-    public string Main { get; set; }
-
-}
-
-public class TemperatureInfo
-{
-    [JsonProperty("temp_min")]
-    public float Temp_min { get; set; }
-
-    [JsonProperty("temp_max")]
-    public float Temp_max { get; set; }
-}
-#endregion
-
 #region WeatherModels.WeatherResponse
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 public class CurrentWeatherResponse
@@ -168,9 +144,11 @@ public class WeatherData
 
     public WeatherResponse GetWeather(string city)
     {
-        WeatherResponse result = new WeatherResponse();
-        result.CurrentWeather = GetCurrentWeather(city);
-        result.WeatherForecast = GetForecast(city);
+        WeatherResponse result = new WeatherResponse
+        {
+            CurrentWeather = GetCurrentWeather(city),
+            WeatherForecast = GetForecast(city)
+        };
         return result;
     }
 }

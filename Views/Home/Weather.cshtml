@@ -24,11 +24,23 @@
         </div>
     <div class="container weather-container">
         <div class="row">
-            @foreach (var item in Model.WeatherForecast)
+            @foreach (var itemsByDate in Model.WeatherForecast.GroupBy(x => x.Date.Day))
             {
-                <div class="col-md-4 weather-box">
-                    <h4>@item.Date.ToString("dddd, dd MMMM yyyy hh:mm tt")</h4> 
-                    <h4>Weather: @item.Weather[0].Main  |   @item.Main.Temp_min - @item.Main.Temp_max °C</h4>
+                <div class="btn-group col-lg-12 date-group-title">
+                    <button type="button" class="btn btn-toolbar dropdown-toggle" data-toggle="dropdown">
+                        @itemsByDate.First().Date.ToString("dddd, dd MMMM yyyy hh:mm tt") <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach (var item in itemsByDate)
+                        {
+                            <li>
+                                <div class="col-md-12 weather-box  thumbnail">
+                                    <h4>@item.Date.ToString("dddd, dd MMMM yyyy hh:mm tt")</h4>
+                                    <h4>Weather: @item.Weather[0].Main  |   @item.Main.Temp_min - @item.Main.Temp_max °C</h4>
+                                </div>
+                            </li>
+                        }
+                    </ul>
                 </div>
             }
         </div>

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-
+using System.Linq;
 
 namespace GetWeatherApp.Controllers
 {
@@ -16,6 +16,7 @@ namespace GetWeatherApp.Controllers
         public ActionResult Weather(string city)
         {
             WeatherResponse responseObj = _weatherData.GetWeather(city);
+            
             return View(responseObj);
         }
 
